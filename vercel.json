@@ -11,7 +11,7 @@
     ],
     "routes": [
         {
-            "src": "/(?!.*\\.)",
+            "src": "^/(?!.*\\.(?:js|css|svg|png|jpg|jpeg|gif|webp|ico|json)$).*$",
             "dest": "/frontend/dist/index.html"
         },
         {
