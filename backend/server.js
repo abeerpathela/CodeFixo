@@ -14,6 +14,9 @@ connectDB();
 
 const app = express();
 
+// Trust proxy (CRITICAL for OAuth on Render - must be BEFORE middleware)
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
@@ -22,7 +25,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.set('trust proxy', 1);
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));

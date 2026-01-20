@@ -98,12 +98,18 @@ const getMe = async (req, res) => {
 // @access  Public
 const googleCallback = async (req, res) => {
     try {
+        if (!req.user) {
+            const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+            return res.redirect(`${frontendUrl}/login?error=auth_failed`);
+        }
         const token = generateToken(req.user._id);
         // Redirect to frontend with token
-        res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}`);
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        res.redirect(`${frontendUrl}/login?token=${token}`);
     } catch (error) {
-        console.error(error);
-        res.redirect(`${process.env.FRONTEND_URL}/login?error=auth_failed`);
+        console.error('Google callback error:', error);
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        res.redirect(`${frontendUrl}/login?error=auth_failed`);
     }
 };
 
