@@ -7,7 +7,7 @@ dotenv.config();
 
 const connectDB = require('./config/db');
 const passport = require('passport');
-require('./config/passport'); // Load passport config
+const session = require('express-session');
 
 // Connect to database
 connectDB();
@@ -24,7 +24,25 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Session middleware (required for Passport OAuth)
+app.use(session({
+    secret: process.env.JWT_SECRET || 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+        sameSite: 'lax'
+    }
+}));
+
+// Passport initialization
 app.use(passport.initialize());
+app.use(passport.session());
+
+// Load passport strategies AFTER passport is initialized
+require('./config/passport');
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
