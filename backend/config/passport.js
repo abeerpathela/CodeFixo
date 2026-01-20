@@ -11,7 +11,6 @@ passport.use(
         process.env.NODE_ENV === "production"
           ? "https://codefixo.onrender.com/api/auth/google/callback"
           : "http://localhost:5000/api/auth/google/callback",
-      scope: ["profile", "email"],
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
