@@ -45,7 +45,7 @@ const LoginPage = () => {
 
     const handleGoogleLogin = () => {
         // Redirect to backend Google Auth route
-        window.location.href = 'http://localhost:5000/api/auth/google';
+        window.location.href = 'https://codefixo.onrender.com/api/auth/google';
     };
 
     return (
