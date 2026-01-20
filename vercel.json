@@ -8,15 +8,5 @@
                 "distDir": "dist"
             }
         }
-    ],
-    "routes": [
-        {
-            "src": "^/(?!.*\\.(?:js|css|svg|png|jpg|jpeg|gif|webp|ico|json)$).*$",
-            "dest": "/frontend/dist/index.html"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/frontend/dist/$1"
-        }
     ]
 }
