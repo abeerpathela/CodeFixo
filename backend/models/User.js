@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         sparse: true, // Allows null for email if using only Google auth (though we usually get email from Google)
         match: [
-            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/,
             'Please add a valid email'
         ]
     },
