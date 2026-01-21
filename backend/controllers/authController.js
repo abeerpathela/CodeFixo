@@ -84,13 +84,20 @@ const loginUser = async (req, res) => {
 // @route   GET /api/auth/me
 // @access  Private
 const getMe = async (req, res) => {
-    const { _id, name, email, avatar } = await User.findById(req.user.id);
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-        avatar,
-    });
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
 };
 
 // @desc    Google Auth Callback

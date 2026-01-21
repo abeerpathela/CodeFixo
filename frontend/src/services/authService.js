@@ -23,6 +23,12 @@ const logout = () => {
   localStorage.removeItem('user');
 };
 
+// Get current user profile
+const getMe = async () => {
+  const response = await api.get('/auth/me');
+  return response.data;
+};
+
 // Login with Google (Frontend initiates, Backend confirms)
 // Actually, for Google OAuth flow with Passport:
 // Option 1: Link to backend /auth/google -> Redirects to Google -> Redirects to /auth/google/callback -> Redirects to Frontend with Token.
@@ -37,7 +43,8 @@ const logout = () => {
 const authService = {
   signup,
   login,
-  logout
+  logout,
+  getMe
 };
 
 export default authService;

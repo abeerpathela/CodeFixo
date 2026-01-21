@@ -22,7 +22,13 @@ router.get(
 
 router.get(
     '/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login', session: false }),
+    (req, res, next) => {
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+        passport.authenticate('google', { 
+            failureRedirect: `${frontendUrl}/login?error=auth_failed`, 
+            session: false 
+        })(req, res, next);
+    },
     googleCallback
 );
 

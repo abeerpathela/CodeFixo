@@ -35,13 +35,24 @@ export const AuthProvider = ({ children }) => {
     };
 
     // Google login is handled by URL params redirect for now
-    const loginWithToken = (token) => {
-        // In a real app, you'd fetch the user profile with this token
-        // For now, we'll assume the backend redirect handles the user object structure if needed
-        // or we fetch /me
-        const userData = { token };
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
+    const loginWithToken = async (token) => {
+        try {
+            // First, save the token so interceptors can use it
+            const userData = { token };
+            localStorage.setItem('user', JSON.stringify(userData));
+            
+            // Fetch complete user profile
+            const profile = await authService.getMe();
+            const fullUserData = { ...profile, token };
+            
+            setUser(fullUserData);
+            localStorage.setItem('user', JSON.stringify(fullUserData));
+            return fullUserData;
+        } catch (error) {
+            console.error('Failed to log in with token', error);
+            localStorage.removeItem('user');
+            throw error;
+        }
     };
 
     const value = {

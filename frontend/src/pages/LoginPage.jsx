@@ -15,17 +15,28 @@ const LoginPage = () => {
 
     useEffect(() => {
         // Handle Google OAuth callback token from URL
-        const params = new URLSearchParams(location.search);
-        const token = params.get('token');
-        if (token) {
-            loginWithToken(token);
-            navigate('/dashboard');
-        }
+        const handleGoogleCallback = async () => {
+            const params = new URLSearchParams(location.search);
+            const token = params.get('token');
+            if (token) {
+                setLoading(true);
+                try {
+                    await loginWithToken(token);
+                    navigate('/dashboard');
+                } catch (err) {
+                    setError('Failed to complete Google authentication.');
+                } finally {
+                    setLoading(false);
+                }
+            }
 
-        const urlError = params.get('error');
-        if (urlError === 'auth_failed') {
-            setError('Google Authentication failed. Please try again.');
-        }
+            const urlError = params.get('error');
+            if (urlError === 'auth_failed') {
+                setError('Google Authentication failed. Please try again.');
+            }
+        };
+
+        handleGoogleCallback();
     }, [location, loginWithToken, navigate]);
 
     const handleSubmit = async (e) => {
