@@ -20,6 +20,7 @@ const DashboardLayout = ({ children }) => {
 
     const menuItems = [
         { title: 'Dashboard', icon: <BarChart3 className="w-5 h-5" />, path: '/dashboard' },
+        { title: 'Goals', icon: <Target className="w-5 h-5 text-emerald-400" />, path: '/goals' },
         { title: 'Code Analysis', icon: <Code2 className="w-5 h-5" />, path: '/analyze' },
         { title: 'Practice Modules', icon: <BookOpen className="w-5 h-5" />, path: '/practice' },
     ];
@@ -36,8 +37,8 @@ const DashboardLayout = ({ children }) => {
                 to={item.path}
                 onClick={() => setIsSidebarOpen(false)}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${isActive
-                        ? 'bg-dark-accent text-white shadow-lg shadow-indigo-500/20'
-                        : 'text-dark-muted hover:bg-dark-border/50 hover:text-dark-text'
+                    ? 'bg-dark-accent text-white shadow-lg shadow-indigo-500/20'
+                    : 'text-dark-muted hover:bg-dark-border/50 hover:text-dark-text'
                     }`}
             >
                 {item.icon}

@@ -16,7 +16,7 @@ const questionSchema = new mongoose.Schema({
     },
     module: {
         type: String,
-        enum: ['Arrays', 'Strings'],
+        enum: ['Arrays', 'Strings', 'Loops', 'Functions', 'Recursion', 'Linked List', 'Stack', 'Queues'],
         required: true
     },
     tags: [String],

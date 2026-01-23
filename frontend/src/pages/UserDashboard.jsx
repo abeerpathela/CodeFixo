@@ -80,28 +80,28 @@ const UserDashboard = () => {
                 <StatCard
                     title="Questions Solved"
                     value={stats?.totalSolved || 0}
-                    sub={`/ ${stats?.totalQuestions || 5000}`}
+                    sub={`/ ${stats?.totalQuestions || 0}`}
                     icon={<CheckCircle2 className="text-indigo-400 w-6 h-6" />}
                     color="bg-indigo-400"
                 />
                 <StatCard
                     title="Global Rank"
-                    value="Ranked"
-                    sub="#12,402"
+                    value={stats?.globalRank || 'N/A'}
+                    sub={`out of ${stats?.totalUsers || 0} users`}
                     icon={<Trophy className="text-amber-400 w-6 h-6" />}
                     color="bg-amber-400"
                 />
                 <StatCard
                     title="Current Streak"
-                    value="0"
+                    value={stats?.currentStreak || 0}
                     sub="Days"
                     icon={<Zap className="text-rose-400 w-6 h-6" />}
                     color="bg-rose-400"
                 />
                 <StatCard
                     title="Target Achieved"
-                    value="0%"
-                    sub="Weekly"
+                    value={`${stats?.targetAchieved || 0}%`}
+                    sub="Goals"
                     icon={<Target className="text-emerald-400 w-6 h-6" />}
                     color="bg-emerald-400"
                 />
@@ -111,17 +111,22 @@ const UserDashboard = () => {
                 {/* Progress Breakdown */}
                 <div className="lg:col-span-2 space-y-8">
                     <div className="bg-dark-card border border-dark-border rounded-3xl p-8">
-                        <h3 className="text-xl font-bold mb-8">Module Breakdown</h3>
-                        <div className="space-y-6">
+                        <div className="flex justify-between items-center mb-8">
+                            <h3 className="text-xl font-bold">Module Breakdown</h3>
+                            <Link to="/goals" className="text-dark-accent text-sm font-bold flex items-center gap-1 hover:underline">
+                                <Target className="w-4 h-4" /> View All Goals
+                            </Link>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                             {Object.entries(stats?.solvedByModule || {}).map(([name, count]) => (
                                 <div key={name} className="space-y-2">
                                     <div className="flex justify-between text-sm font-bold">
                                         <span className="flex items-center gap-2">
                                             <BookOpen className="w-4 h-4 text-dark-accent" /> {name}
                                         </span>
-                                        <span>{count} Solved</span>
+                                        <span className="text-dark-muted">{count} Solved</span>
                                     </div>
-                                    <div className="h-2.5 bg-dark-bg rounded-full overflow-hidden border border-dark-border">
+                                    <div className="h-2 bg-dark-bg rounded-full overflow-hidden border border-dark-border">
                                         <div
                                             className="h-full bg-dark-accent rounded-full transition-all duration-1000"
                                             style={{ width: `${Math.min(100, (count / 30) * 100)}%` }}
@@ -185,13 +190,14 @@ const UserDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
+                    <div className="bg-gradient-to-br from-dark-card to-dark-bg border border-dark-border rounded-3xl p-8 relative overflow-hidden shadow-2xl">
                         <div className="relative z-10">
-                            <h3 className="text-xl font-bold mb-2">Upgrade to Pro</h3>
-                            <p className="text-white/80 text-sm mb-6">Unlock advanced AI hints, priority support, and detailed system design modules.</p>
-                            <button className="bg-white text-indigo-600 px-6 py-2 rounded-xl font-bold text-sm hover:bg-gray-100 transition">Coming Soon</button>
+                            <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                                <Sparkles className="w-5 h-5 text-amber-400" /> Premium Tips
+                            </h3>
+                            <p className="text-dark-muted text-sm mb-6">Focus on Medium difficulty questions to improve your problem-solving speed for top tech interviews.</p>
+                            <Link to="/practice" className="text-dark-accent font-bold text-sm hover:underline">Start Leveling Up →</Link>
                         </div>
-                        <Sparkles className="absolute -bottom-4 -right-4 w-24 h-24 text-white/10 rotate-12" />
                     </div>
                 </div>
             </div>

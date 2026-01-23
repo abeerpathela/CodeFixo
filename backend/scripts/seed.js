@@ -4,7 +4,7 @@ const Question = require('../models/Question');
 const questions = require('../utils/seedQuestions');
 
 // Load environment variables
-dotenv.config({ path: './backend/.env' });
+dotenv.config({ path: '.env' });
 
 // Connect to MongoDB
 const connectDB = async () => {

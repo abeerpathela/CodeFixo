@@ -6,7 +6,7 @@ const { analyzeCode } = require('../utils/aiService');
 // @route   GET /api/practice/modules
 // @access  Public
 const getModules = (req, res) => {
-    res.json(['Arrays', 'Strings']);
+    res.json(['Arrays', 'Strings', 'Loops', 'Functions', 'Recursion', 'Linked List', 'Stack', 'Queues']);
 };
 
 // @desc    Get questions by module and difficulty

@@ -11,6 +11,7 @@ import CodeAnalysisPage from './pages/CodeAnalysisPage';
 import PracticePage from './pages/PracticePage';
 import QuestionPage from './pages/QuestionPage';
 import UserDashboard from './pages/UserDashboard';
+import GoalsPage from './pages/GoalsPage';
 
 function App() {
   return (
@@ -28,6 +29,13 @@ function App() {
               <ProtectedRoute>
                 <DashboardLayout>
                   <UserDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            } />
+            <Route path="/goals" element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <GoalsPage />
                 </DashboardLayout>
               </ProtectedRoute>
             } />
