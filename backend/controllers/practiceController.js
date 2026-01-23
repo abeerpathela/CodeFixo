@@ -20,14 +20,10 @@ const getQuestions = async (req, res) => {
     if (difficulty) query.difficulty = difficulty;
 
     try {
+        console.log('Query being sent to MongoDB:', query);
+        console.log(`Fetching questions for module: ${module}, difficulty: ${difficulty}`);
         const questions = await Question.find(query).select('-testCases -sampleInput -sampleOutput -constraints');
-
-        // If user is logged in, attach solved status // This logic is tricky in list view without aggregation or separate call
-        // For now, return basic questions list. Frontend can fetch solved status separately or we improve this.
-        // Let's improve this: If header auth token is present, we could check. 
-        // But simplicity first: We'll fetch user progress separately or handling it in frontend.
-        // Actually, dashboard needs progress. Question list needs "solved". as per requirement.
-
+        console.log(`Found ${questions.length} questions matching criteria.`);
         res.json(questions);
     } catch (error) {
         res.status(500);
