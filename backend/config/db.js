@@ -12,11 +12,13 @@ const connectDB = async () => {
         const count = await Question.countDocuments();
         console.log(`Current question count in database: ${count}`);
 
-        if (count === 0) {
-            console.log('No questions found in database. Seeding initial data...');
+        if (count < 200) {
+            console.log('Database questions are incomplete. Re-seeding data...');
             try {
+                // Clear existing to avoid duplicates if re-seeding
+                await Question.deleteMany();
                 await Question.insertMany(questions);
-                console.log('Database seeded successfully with practice questions.');
+                console.log('Database seeded successfully with all 240+ practice questions.');
             } catch (seedError) {
                 console.error(`Error during seeding: ${seedError.message}`);
             }
