@@ -62,44 +62,55 @@ const DashboardLayout = ({ children }) => {
 
             {/* Sidebar */}
             <aside className={`
-        fixed inset-y-0 left-0 z-40 w-72 bg-dark-card border-r border-dark-border transform transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-40 w-80 bg-dark-bg/60 backdrop-blur-3xl border-r border-white/5 transform transition-transform duration-500 ease-in-out
         lg:relative lg:translate-x-0
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-                <div className="flex flex-col h-full p-6">
+                <div className="flex flex-col h-full p-8">
                     {/* Logo */}
-                    <div className="mb-10 px-2">
+                    <div className="mb-14 px-2">
                         <Logo size="sm" />
                     </div>
 
                     {/* Nav Links */}
-                    <nav className="flex-1 space-y-2">
+                    <nav className="flex-1 space-y-3">
                         {menuItems.map((item) => (
-                            <NavItem key={item.path} item={item} />
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                onClick={() => setIsSidebarOpen(false)}
+                                className={`flex items-center space-x-4 px-6 py-4 rounded-2xl transition-all duration-300 group ${location.pathname === item.path
+                                    ? 'bg-white/5 text-white shadow-2xl shadow-indigo-500/10 border border-white/10'
+                                    : 'text-dark-muted hover:text-white'
+                                    }`}
+                            >
+                                <div className={`${location.pathname === item.path ? 'text-indigo-400' : 'text-dark-muted group-hover:text-white'} transition-colors`}>
+                                    {item.icon}
+                                </div>
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em]">{item.title}</span>
+                                {location.pathname === item.path && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,1)]" />}
+                            </Link>
                         ))}
                     </nav>
 
                     {/* User Profile & Logout */}
-                    <div className="mt-auto pt-6 border-t border-dark-border">
-                        <div className="flex items-center space-x-3 px-2 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-dark-accent/20 flex items-center justify-center border border-dark-accent/30 overflow-hidden">
-                                {user?.avatar ? (
-                                    <img src={user.avatar} alt="avatar" className="w-full h-full object-cover" />
-                                ) : (
-                                    <UserIcon className="text-dark-accent w-6 h-6" />
-                                )}
+                    {/* User Profile & Logout */}
+                    <div className="mt-auto pt-8 border-t border-white/5 space-y-4">
+                        <div className="flex items-center space-x-4 px-4">
+                            <div className="w-12 h-12 rounded-2xl accent-gradient flex items-center justify-center font-black text-white shadow-lg">
+                                {user?.name?.charAt(0).toUpperCase() || 'U'}
                             </div>
-                            <div className="flex flex-col min-w-0">
-                                <span className="text-sm font-bold truncate">{user?.name || 'Developer'}</span>
-                                <span className="text-xs text-dark-muted truncate">{user?.email || 'dev@codefixo.io'}</span>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-xs font-black uppercase tracking-tighter truncate">{user?.name || 'Developer'}</p>
+                                <p className="text-[10px] text-dark-muted font-bold tracking-widest uppercase">PRO Account</p>
                             </div>
                         </div>
                         <button
                             onClick={handleLogout}
-                            className="flex items-center space-x-3 px-4 py-3 rounded-xl w-full text-red-400 hover:bg-red-400/10 transition-colors"
+                            className="w-full flex items-center space-x-4 px-6 py-4 rounded-2xl text-dark-muted hover:text-red-400 hover:bg-red-500/5 transition-all duration-300 group"
                         >
-                            <LogOut className="w-5 h-5" />
-                            <span className="font-bold">Logout</span>
+                            <LogOut className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Secure Logout</span>
                         </button>
                     </div>
                 </div>

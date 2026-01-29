@@ -25,41 +25,35 @@ const Logo = ({ className = "", showText = true, size = "md" }) => {
                 >
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#6366f1" />
-                            <stop offset="50%" stopColor="#a855f7" />
-                            <stop offset="100%" stopColor="#2dd4bf" />
+                            <stop offset="0%" stopColor="#818cf8" />
+                            <stop offset="100%" stopColor="#ec4899" />
                         </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="2" result="blur" />
-                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                        </filter>
                     </defs>
 
-                    {/* Outer stylized C */}
+                    {/* Designer abstract mark */}
+                    <circle cx="50" cy="50" r="48" stroke="white" strokeOpacity="0.05" strokeWidth="0.5" fill="none" />
+
                     <path
-                        d="M80 20C70 10 55 5 40 5C20 5 5 20 5 40V60C5 80 20 95 40 95C60 95 75 85 85 70"
+                        d="M35 40C35 30 45 25 55 25C70 25 80 35 80 50C80 65 70 75 55 75C45 75 35 70 35 60"
                         stroke="url(#logoGrad)"
-                        strokeWidth="10"
+                        strokeWidth="12"
                         strokeLinecap="round"
-                        className="group-hover:stroke-white transition-all duration-500"
+                        className="group-hover:stroke-white transition-all duration-700 ease-in-out"
                     />
 
-                    {/* The "Fix" element - a diamond/rhombus representing a solved unit */}
-                    <path
-                        d="M60 40L80 60L60 80L40 60L60 40Z"
+                    <rect
+                        x="48" y="48" width="16" height="16"
                         fill="url(#logoGrad)"
-                        className="animate-pulse"
+                        className="animate-[pulse_2s_ease-in-out_infinite] origin-center rotate-45"
+                        style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
                     />
-
-                    {/* Inner core */}
-                    <circle cx="60" cy="60" r="8" fill="white" className="group-hover:scale-150 transition-transform origin-center" />
                 </svg>
             </div>
 
             {showText && (
-                <span className={`${textSizes[size]} font-black tracking-[ -0.05em] uppercase italic`}>
-                    <span className="text-white">Code</span>
-                    <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">Fixo</span>
+                <span className={`${textSizes[size]} font-black tracking-tight leading-none`}>
+                    <span className="text-white uppercase">CODE</span>
+                    <span className="bg-gradient-to-br from-indigo-400 to-pink-400 bg-clip-text text-transparent ml-1 uppercase">FIXO</span>
                 </span>
             )}
         </div>
