@@ -100,7 +100,7 @@ const getStats = async (req, res) => {
             totalQuestions,
             solvedByModule,
             solvedByDifficulty,
-            recentlySolved: recent.map(r => r.questionId),
+            recentlySolved: recent.map(r => r.questionId).filter(q => q !== null),
             currentStreak,
             globalRank,
             totalUsers,

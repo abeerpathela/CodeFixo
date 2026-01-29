@@ -140,8 +140,8 @@ const UserDashboard = () => {
                     <div className="bg-dark-card border border-dark-border rounded-3xl p-8">
                         <h3 className="text-xl font-bold mb-6">Recently Solved</h3>
                         <div className="space-y-2">
-                            {stats?.recentlySolved?.length > 0 ? (
-                                stats.recentlySolved.map(q => (
+                            {stats?.recentlySolved?.filter(q => q).length > 0 ? (
+                                stats.recentlySolved.filter(q => q).map(q => (
                                     <Link
                                         key={q._id}
                                         to={`/practice/question/${q._id}`}
