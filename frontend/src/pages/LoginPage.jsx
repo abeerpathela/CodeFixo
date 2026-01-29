@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Code, Mail, Lock, Loader2, Github } from 'lucide-react';
+import { Mail, Lock, Loader2, Github } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -62,11 +63,11 @@ const LoginPage = () => {
     return (
         <div className="min-h-screen bg-dark-bg flex items-center justify-center p-6">
             <div className="w-full max-w-md bg-dark-card rounded-3xl border border-dark-border p-8 shadow-2xl">
-                <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center bg-dark-accent p-3 rounded-2xl mb-4">
-                        <Code className="text-white w-8 h-8" />
-                    </div>
-                    <h2 className="text-3xl font-bold">Welcome Back</h2>
+                <div className="flex flex-col items-center mb-8 text-center">
+                    <Logo size="lg" className="mb-6" showText={false} />
+                    <h2 className="text-3xl font-bold italic tracking-tighter uppercase">
+                        Welcome <span className="text-indigo-400">Back</span>
+                    </h2>
                     <p className="text-dark-muted mt-2">Continue your coding journey with CodeFixo</p>
                 </div>
 

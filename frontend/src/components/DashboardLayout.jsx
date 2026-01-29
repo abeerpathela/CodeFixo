@@ -12,6 +12,7 @@ import {
     Target
 } from 'lucide-react';
 import { useState } from 'react';
+import Logo from './Logo';
 
 const DashboardLayout = ({ children }) => {
     const { user, logout } = useAuth();
@@ -67,11 +68,8 @@ const DashboardLayout = ({ children }) => {
       `}>
                 <div className="flex flex-col h-full p-6">
                     {/* Logo */}
-                    <div className="flex items-center space-x-3 mb-10 px-2">
-                        <div className="bg-dark-accent p-2 rounded-lg">
-                            <Code2 className="text-white w-6 h-6" />
-                        </div>
-                        <span className="text-xl font-bold">CodeFixo</span>
+                    <div className="mb-10 px-2">
+                        <Logo size="sm" />
                     </div>
 
                     {/* Nav Links */}

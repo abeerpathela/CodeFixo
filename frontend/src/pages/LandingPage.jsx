@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Shield, Zap, TrendingUp, Code, ArrowRight } from 'lucide-react';
+import Logo from '../components/Logo';
 
 const LandingPage = () => {
     return (
         <div className="bg-dark-bg min-h-screen text-dark-text">
             {/* Navbar */}
             <nav className="flex items-center justify-between p-6 max-w-7xl mx-auto">
-                <div className="flex items-center space-x-2">
-                    <div className="bg-dark-accent p-2 rounded-lg">
-                        <Code className="text-white w-6 h-6" />
-                    </div>
-                    <span className="text-2xl font-bold tracking-tight">CodeFixo</span>
-                </div>
+                <Logo size="md" />
                 <div className="hidden md:flex space-x-8 text-dark-muted font-medium">
                     <a href="#features" className="hover:text-dark-text transition">Features</a>
                     <a href="#how-it-works" className="hover:text-dark-text transition">How it Works</a>
@@ -89,9 +85,9 @@ const LandingPage = () => {
                 </p>
                 <Link
                     to="/signup"
-                    className="bg-dark-accent hover:bg-dark-accentHover text-white px-12 py-4 rounded-xl font-bold text-lg transition inline-flex items-center"
+                    className="bg-dark-accent hover:bg-dark-accentHover text-white px-12 py-4 rounded-xl font-bold text-lg transition inline-flex items-center gap-3"
                 >
-                    Sign Up Now <Code className="ml-2 w-5 h-5" />
+                    Sign Up Now <Logo size="sm" showText={false} />
                 </Link>
             </section>
 
