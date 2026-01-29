@@ -84,8 +84,8 @@ const UserDashboard = () => {
                 />
                 <StatCard
                     title="Rank"
-                    value={stats?.globalRank?.replace('#', '') || '0'}
-                    sub={`GLOBAL #`}
+                    value={stats?.globalRank?.replace('#', '') || '1'}
+                    sub={`FROM ${stats?.totalUsers || 7} USERS`}
                     icon={<Trophy className="text-amber-400 w-6 h-6" />}
                     color="bg-amber-400"
                 />

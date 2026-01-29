@@ -111,6 +111,47 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
+            {/* How it Works Section */}
+            <section id="how-it-works" className="max-w-7xl mx-auto px-6 py-40 border-t border-white/5">
+                <div className="text-center mb-24">
+                    <h2 className="text-5xl font-black uppercase tracking-tighter italic mb-6">How It <span className="text-indigo-400">Works</span></h2>
+                    <p className="text-dark-muted max-w-2xl mx-auto font-medium">Three steps to master your engineering craft.</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                    {/* Connecting Line (Desktop) */}
+                    <div className="hidden md:block absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent -z-10" />
+
+                    {[
+                        {
+                            step: "01",
+                            title: "Analyze",
+                            desc: "Submit your code for a deep-dive AI analysis. Our code analyzer catches bugs, logic flaws, and performance leaks before they reach production.",
+                            color: "text-indigo-400"
+                        },
+                        {
+                            step: "02",
+                            title: "Practice",
+                            desc: "Progress through 60+ curated DSA practice modules. Each module is designed to build foundational logic through active problem-solving.",
+                            color: "text-pink-400"
+                        },
+                        {
+                            step: "03",
+                            title: "Rank",
+                            desc: "Climb the ranking system. See your rank among total users and compare your progress against thousands of developers.",
+                            color: "text-teal-400"
+                        }
+                    ].map((item, idx) => (
+                        <div key={idx} className="glass-card p-10 rounded-[40px] relative group hover:-translate-y-2 transition-transform duration-500">
+                            <span className={`text-6xl font-black opacity-5 absolute -top-8 left-8 ${item.color}`}>{item.step}</span>
+                            <h3 className={`text-2xl font-black uppercase tracking-tight mb-4 ${item.color}`}>{item.title}</h3>
+                            <p className="text-dark-muted text-sm font-medium leading-relaxed">
+                                {item.desc}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
             {/* CTA Footer */}
             <section className="max-w-7xl mx-auto px-6 mb-40">
